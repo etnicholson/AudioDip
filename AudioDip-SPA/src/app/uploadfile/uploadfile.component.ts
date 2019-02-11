@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { User } from '../_models/user';
+import { Router } from '@angular/router';
 
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
@@ -28,7 +29,8 @@ export class UploadfileComponent implements OnInit {
   user: User;
 
 
-  constructor(private imageService: UploadService, private http: HttpClient, private authService: AuthService) {}
+  constructor(private imageService: UploadService, private http: HttpClient,
+    private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.val = 0;
@@ -59,7 +61,7 @@ export class UploadfileComponent implements OnInit {
       reportProgress: true,
       observe: 'events'
     })
-      .subscribe(event => {
+      .subscribe((event) => {
         if (event.type === HttpEventType.UploadProgress) {
           this.val = Math.round(event.loaded / event.total * 100);
           if (event.loaded === event.total ) {
@@ -70,7 +72,8 @@ export class UploadfileComponent implements OnInit {
           }
         }
 
-      });
+      }, error => console.log(error),  () =>     this.router.navigate(['/userPanel']));
+
 
   }
 

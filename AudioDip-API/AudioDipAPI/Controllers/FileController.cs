@@ -34,7 +34,7 @@ namespace AudioDipAPI.Controllers
         public ActionResult<IEnumerable<AudioFile>> UserFiles(int userId)
         {
 
-            var files = _context.AudioFiles.Where<AudioFile>(p => p.UserId == userId).ToList();
+            var files = _context.AudioFiles.Where<AudioFile>(p => p.UserId == userId).OrderByDescending(p => p.Id).ToList();
 
             return files;
         }
@@ -76,7 +76,7 @@ namespace AudioDipAPI.Controllers
             var audio = new AudioFile { FileName = fileName, Title = title, UserId = userId };
             _context.AudioFiles.Add(audio);
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok(audio);
         }
 
 
