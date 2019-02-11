@@ -31,6 +31,8 @@ export class UploadfileComponent implements OnInit {
   constructor(private imageService: UploadService, private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.val = 0;
+
   }
 
   processFile(event) {
@@ -59,10 +61,9 @@ export class UploadfileComponent implements OnInit {
     })
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
-          console.log(event);
           this.val = Math.round(event.loaded / event.total * 100);
           if (event.loaded === event.total ) {
-            console.log('done');
+            console.log(event);
             this.title.reset();
             this.fs.nativeElement.value = '';
 

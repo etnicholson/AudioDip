@@ -1,24 +1,28 @@
-<form #f="ngForm">
- <mat-form-field>
-        <input matInput placeholder="Title"
-        class="form-control"
-        ngModel
-        required
-        name="Title">
-</mat-form-field>
+
+
+    <form #f="ngForm">
+        <div class="main-container">
+  <mat-form-field>
+          <input matInput placeholder="Title"
+          class="form-control"
+          ngModel 
+          required
+          name="Title">
+  </mat-form-field>
 
 
 
-<label class=" btn btn-bwm">
-    <span>Select Audio</span>
+
     <input #imageInput
            type="file"
+           class="form-control"
            accept="audio/*"
            (change)="processFile($event)"
            [disabled]="!f.valid">
-  </label>
+          </div>
+  
 </form>
 
+<mat-progress-bar *ngIf="val > 0" mode="determinate" value="{{ val }}"></mat-progress-bar>
 
-  <mat-progress-bar mode="determinate" value="{{ val }}"></mat-progress-bar>
  

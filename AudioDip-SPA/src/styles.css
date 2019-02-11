@@ -16,12 +16,12 @@ body {
 
 
 
-.example-container {
+.main-container {
     display: flex;
     flex-direction: column;
   }
   
-  .example-container > * {
+  .main-container > * {
     width: 100%;
   }
   
