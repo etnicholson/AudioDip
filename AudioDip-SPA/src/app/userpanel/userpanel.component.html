@@ -1,0 +1,22 @@
+<h1 style="    text-align: center;">My Audio Dips</h1>
+
+
+<div *ngFor="let audio of audioFiles" style="padding-top: 10px;">
+
+<mat-card>
+        <mat-card-header>
+
+          <mat-card-title>
+              <a href="player/{{ audio.id }}">              {{audio.title}}
+              </a>
+
+          </mat-card-title>
+
+        </mat-card-header>
+        <mat-card-actions>
+          <button (click)="copy('test')" mat-button>Share</button>
+          <button (click)="delete(audio.id)" mat-button  >Delete</button>
+        </mat-card-actions>
+    </mat-card>
+
+</div>
