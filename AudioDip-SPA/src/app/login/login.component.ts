@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
       this.error = 'Wrong email or password, try again.';
     }, () => {
-      this.router.navigate(['/']);
+      this.router.navigate(['/userPanel']);
     });
 
   }

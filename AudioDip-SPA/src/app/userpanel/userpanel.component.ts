@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FileService } from '../_services/file.service';
 import { AlertifyService } from '../_services/alertify.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class UserpanelComponent implements OnInit {
 
   baseUrl = environment.apiUrl + 'file/';
   audioFiles: AudioFile[];
-  constructor(private fileService: FileService, private alertify: AlertifyService) { }
+  hasFile: boolean;
+  constructor(private fileService: FileService, private alertify: AlertifyService, private router: Router) { }
 
 
 
@@ -25,6 +27,14 @@ export class UserpanelComponent implements OnInit {
 
     this.fileService.getUserFiles(id['id']).subscribe(
       (res: any) => this.audioFiles = res
+    , (error: any) => console.log(error) , () => {
+          if (this.audioFiles.length < 1) {
+            this.hasFile = false;
+          } else {
+            this.hasFile = true;
+          }
+            }
+
     );
 
 
@@ -35,11 +45,19 @@ export class UserpanelComponent implements OnInit {
 
 
   delete(id: number) {
-    console.log(id);
+
     this.fileService.deleteFile(id).subscribe(
       (res: any) => {
         this.alertify.warning('File Deleted');
-         this.audioFiles.splice(id);
+
+        const index = this.audioFiles.findIndex(x => x.id === id);
+
+         this.audioFiles.splice(index);
+
+         if (this.audioFiles.length < 1) {
+           this.hasFile = false;
+         }
+
       }
     );
 

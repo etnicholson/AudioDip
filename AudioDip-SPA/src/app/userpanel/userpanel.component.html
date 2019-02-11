@@ -7,7 +7,7 @@
         <mat-card-header>
 
           <mat-card-title>
-              <a href="player/{{ audio.id }}">              {{audio.title}}
+              <a [routerLink]="['/player/audio.id']">              {{audio.title}}
               </a>
 
           </mat-card-title>
@@ -20,3 +20,11 @@
     </mat-card>
 
 </div>
+
+<div  *ngIf="!hasFile"> 
+     <span>Please      <a [routerLink]="['/upload']" class="btn btn-secondary" id="homebutton"> Upload </a> an audio file.</span>
+
+
+
+</div>
+

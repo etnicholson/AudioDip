@@ -30,7 +30,7 @@
                   </button>
                </a>
 
-               <a href="/userPanel">
+               <a [routerLink]="['/userPanel']">
                 <button mat-menu-item>
                   <mat-icon>account_box</mat-icon>
                   <span>
@@ -39,7 +39,7 @@
                 </button>
               </a>
 
-               <a href="/upload">
+               <a [routerLink]="['/upload']">
                 <button mat-menu-item>
 
                   <mat-icon>cloud_upload</mat-icon>
@@ -53,7 +53,7 @@
                   <button mat-menu-item>
                   <mat-icon>face</mat-icon>
                   <span >
-                    <a href="/login">Log in</a>
+                    <a [routerLink]="['/login']">Log in</a>
         
                   </span>
                 </button>

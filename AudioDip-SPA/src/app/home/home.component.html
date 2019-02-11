@@ -1,1 +1,31 @@
-Hi
+
+
+<div  class="home" *ngIf="loggedIn()">
+        <h1>Upload an audio today</h1>
+<a [routerLink]="['/upload']" class="btn btn-secondary" id="homebutton"> Upload </a>
+
+
+ </div>
+
+
+
+<div *ngIf="!loggedIn()" class="home">
+
+    <h1>Upload an audio today</h1>
+<a [routerLink]="['/login']" class="btn btn-secondary" id="homebutton"> Login </a>
+
+
+
+
+
+
+
+
+
+<a [routerLink]="['/register']" class="btn btn-secondary" id="homebutton"> Register </a>
+
+
+
+</div>
+
+
