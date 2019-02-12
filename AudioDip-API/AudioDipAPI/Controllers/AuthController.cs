@@ -63,7 +63,7 @@ namespace AudioDipAPI.Controllers
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8
-                .GetBytes(_config.GetSection("AppSettings:Token").Value));
+                .GetBytes("NE193SXuWSXae7OZLSLLFlHzk9HlcwOnFMMNOYqaIXQKz24VOpmjHzV20WPuOqR"));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 

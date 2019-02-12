@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import WaveSurfer from 'wavesurfer.js';
 import { Router, ActivatedRoute} from '@angular/router';
 import { FileService } from '../_services/file.service';
@@ -11,7 +11,7 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
   templateUrl: './audioplayer.component.html',
   styleUrls: ['./audioplayer.component.css']
 })
-export class AudioplayerComponent implements OnInit {
+export class AudioplayerComponent implements OnInit, OnDestroy {
   wavesurfer: any;
   id: number;
   audioFile: AudioFile;
@@ -35,6 +35,12 @@ export class AudioplayerComponent implements OnInit {
   );
 
 
+
+  }
+
+  ngOnDestroy() {
+
+    this.wavesurfer.pause();
 
   }
 
