@@ -5,6 +5,7 @@ import { FileService } from '../_services/file.service';
 import { AudioFile } from '../_models/audioFile';
 import { environment } from 'src/environments/environment';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-audioplayer',
@@ -16,7 +17,7 @@ export class AudioplayerComponent implements OnInit, OnDestroy {
   id: number;
   audioFile: AudioFile;
   uploadFolder = environment.uploadFolder;
-  constructor(private route: ActivatedRoute, private fileService: FileService) { }
+  constructor(private route: ActivatedRoute, private fileService: FileService, private alertify: AlertifyService) { }
 
   ngOnInit() {
       this.wavesurfer = WaveSurfer.create({
@@ -53,5 +54,22 @@ export class AudioplayerComponent implements OnInit, OnDestroy {
     this.wavesurfer.pause();
 
   }
+
+  share(val: number) {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = 'https://simpleblog.ml/player/' + val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    this.alertify.success('Copied to the clipboard');
+  }
+
+
 
 }

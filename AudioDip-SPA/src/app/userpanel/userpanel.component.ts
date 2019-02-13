@@ -63,14 +63,13 @@ export class UserpanelComponent implements OnInit {
 
   }
 
-  /* To copy any Text */
   copy(val: string) {
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
-    selBox.value = val;
+    selBox.value = 'https://simpleblog.ml/player/' + val;
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
