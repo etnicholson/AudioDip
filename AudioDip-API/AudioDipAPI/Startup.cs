@@ -37,7 +37,7 @@ namespace AudioDipAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseNpgsql("Host=localhost;Database=AudioDip;Username=melvis;Password=merda86"));
+            options.UseNpgsql("Insert DB INFO"));
             //services.AddDefaultIdentity<IdentityUser>()
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
